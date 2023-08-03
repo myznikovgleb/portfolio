@@ -17,6 +17,7 @@ export default function Home() {
         />
         <Dummy position={[0, 0, -1.5]} />
         <Environment preset="city" />
+        <fog attach="fog" args={['white', 6, 8]} />
       </Canvas>
       <Keyboard />
       <Pointer />
