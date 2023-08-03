@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Image from 'next/image'
 
 import { useDummyState } from '../store/dummyState'
@@ -9,7 +8,7 @@ export function Pointer() {
   const turnRight = useDummyState((dummyState) => dummyState.turnRight)
 
   const btnClassName =
-    'p-1 border-[3px] rounded-full border-white/0 active:border-white focus-visible:outline-none'
+    'p-1 border-4 rounded-full border-white/0 active:border-white focus-visible:outline-none'
 
   return (
     <div className="absolute bottom-0 left-0 z-10 py-6 px-2">
@@ -22,8 +21,8 @@ export function Pointer() {
           >
             <Image
               src="arrow_forward.svg"
-              width={32}
-              height={32}
+              width={48}
+              height={48}
               alt="Moving"
               priority
             />
@@ -38,8 +37,8 @@ export function Pointer() {
           >
             <Image
               src="arrow_left.svg"
-              width={32}
-              height={32}
+              width={48}
+              height={48}
               alt="Clockwise rotation"
               priority
             />
@@ -54,8 +53,8 @@ export function Pointer() {
           >
             <Image
               src="arrow_right.svg"
-              width={32}
-              height={32}
+              width={48}
+              height={48}
               alt="Counterclockwise rotation"
               priority
             />
