@@ -8,6 +8,7 @@ interface DummyState {
   move: (isPressed: boolean) => void
   turnLeft: (isPressed: boolean) => void
   turnRight: (isPressed: boolean) => void
+  reset: (isPressed: boolean) => void
 }
 
 const useDummyState = create<DummyState>()((set) => ({
@@ -38,6 +39,19 @@ const useDummyState = create<DummyState>()((set) => ({
     if (isPressed) {
       return set((dummyState) => ({
         direction: dummyState.direction - Math.PI / 16
+      }))
+    }
+  },
+
+  reset: (isPressed) => {
+    if (isPressed) {
+      return set((dummyState) => ({
+        position: {
+          ...dummyState.position,
+          x: 0,
+          z: 0
+        },
+        direction: 0
       }))
     }
   }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { useAnimations, useGLTF, OrbitControls } from '@react-three/drei'
 import { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
 import { GLTF } from 'three-stdlib'
