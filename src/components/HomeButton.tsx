@@ -9,7 +9,7 @@ export default function HomeButton() {
 
   const isDummyHidden = useMemo(() => {
     const curDistance = position.x * position.x + position.z * position.z
-    const maxDistance = 100
+    const maxDistance = 65
     return maxDistance < curDistance
   }, [position])
 
