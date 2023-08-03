@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useAnimations, useGLTF, OrbitControls } from '@react-three/drei'
+import { useSpring, animated } from '@react-spring/three'
 import { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
 import { GLTF } from 'three-stdlib'
 
@@ -30,6 +31,22 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
   const { actions, names } = useAnimations(animations, ref)
 
+  const [springs, api] = useSpring(
+    () => ({
+      position: [0, 0, 0],
+      direction: 0,
+      config: { mass: 2, tension: 10, friction: 10 }
+    }),
+    []
+  )
+
+  useEffect(() => {
+    api.start({
+      position: [position.x, position.y, position.z],
+      direction: direction
+    })
+  }, [api, position, direction])
+
   useEffect(() => {
     actions[names[actionIndex]]?.reset().play()
     actions[names[actionIndex]]?.reset().fadeIn(0.5).play()
@@ -41,10 +58,10 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
   return (
     <group {...props} ref={ref} dispose={null}>
       <group name="Scene">
-        <group
+        <animated.group
           name="ArmatureD"
-          position={[position.x, position.y, position.z]}
-          rotation={[0, direction, 0]}
+          position={springs.position.to((x, y, z) => [x, y, z])}
+          rotation-y={springs.direction.to((y) => y)}
         >
           <skinnedMesh
             castShadow
@@ -82,7 +99,7 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
             skeleton={nodes.ShoesD.skeleton}
           />
           <primitive object={nodes.Root} />
-        </group>
+        </animated.group>
       </group>
 
       <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
