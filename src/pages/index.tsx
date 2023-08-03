@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
+import HomeButton from '../components/HomeButton'
 import { Keyboard, Pointer } from '../controls'
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       </Canvas>
       <Keyboard />
       <Pointer />
+      <HomeButton />
     </div>
   )
 }
