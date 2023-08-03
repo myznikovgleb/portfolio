@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
+import { Keyboard, Pointer } from '../controls'
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
         <Dummy position={[0, 0, -1.5]} />
         <Environment preset="city" />
       </Canvas>
+      <Keyboard />
+      <Pointer />
     </div>
   )
 }
