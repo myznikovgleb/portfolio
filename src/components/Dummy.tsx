@@ -82,12 +82,12 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
         </group>
       </group>
 
-      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[3]} />
+      <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
+        <circleGeometry args={[6]} />
         <meshStandardMaterial color="hotpink" side={2} />
       </mesh>
 
-      <OrbitControls autoRotate />
+      <OrbitControls />
     </group>
   )
 }
