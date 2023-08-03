@@ -3,6 +3,8 @@ import { useAnimations, useGLTF, OrbitControls } from '@react-three/drei'
 import { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
 import { GLTF } from 'three-stdlib'
 
+import { useDummyState } from '../store/dummyState'
+
 type GLTFResult = GLTF & {
   nodes: {
     BodyD: SkinnedMesh
@@ -19,30 +21,31 @@ type GLTFResult = GLTF & {
   }
 }
 export default function Dummy(props: JSX.IntrinsicElements['group']) {
+  const position = useDummyState((dummyState) => dummyState.position)
+  const direction = useDummyState((dummyState) => dummyState.direction)
+  const actionIndex = useDummyState((dummyState) => dummyState.actionIndex)
+
   const ref = useRef<Group>(null!)
 
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
   const { actions, names } = useAnimations(animations, ref)
 
-  const [index, setIndex] = useState(2)
-
   useEffect(() => {
-    actions[names[index]]?.reset().play()
-    actions[names[index]]?.reset().fadeIn(0.5).play()
+    actions[names[actionIndex]]?.reset().play()
+    actions[names[actionIndex]]?.reset().fadeIn(0.5).play()
     return () => {
-      actions[names[index]]?.fadeOut(0.5)
+      actions[names[actionIndex]]?.fadeOut(0.5)
     }
-  }, [index, actions, names])
+  }, [actions, names, actionIndex])
 
   return (
-    <group
-      {...props}
-      ref={ref}
-      dispose={null}
-      onClick={() => setIndex((index + 1) % names.length)}
-    >
+    <group {...props} ref={ref} dispose={null}>
       <group name="Scene">
-        <group name="ArmatureD">
+        <group
+          name="ArmatureD"
+          position={[position.x, position.y, position.z]}
+          rotation={[0, direction, 0]}
+        >
           <skinnedMesh
             castShadow
             name="BodyD"
@@ -82,12 +85,12 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
         </group>
       </group>
 
-      <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-        <circleGeometry args={[3]} />
+      <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
+        <circleGeometry args={[6]} />
         <meshStandardMaterial color="hotpink" side={2} />
       </mesh>
 
-      <OrbitControls autoRotate />
+      <OrbitControls />
     </group>
   )
 }

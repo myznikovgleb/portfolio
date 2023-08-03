@@ -2,27 +2,23 @@ import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
+import { Keyboard, Pointer } from '../controls'
 
 export default function Home() {
   return (
     <div id="canvas">
-      <Canvas shadows camera={{ position: [0, 3, 4] }}>
+      <Canvas shadows camera={{ position: [0, 2.5, -3] }}>
         <ambientLight intensity={0.5} />
         <directionalLight
-          position={[-2, 2, 2]}
+          position={[3, 3, -3]}
           castShadow
           shadow-mapSize={1024}
         />
-
-        <Dummy position={[0, -1.5, 0]} scale={1.5} />
-
-        <mesh rotation={[-Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[10, 10, 1, 1]} />
-          <shadowMaterial transparent opacity={0.2} />
-        </mesh>
-
+        <Dummy position={[0, 0, -1.5]} />
         <Environment preset="city" />
       </Canvas>
+      <Keyboard />
+      <Pointer />
     </div>
   )
 }
