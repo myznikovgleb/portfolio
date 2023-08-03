@@ -18,7 +18,7 @@ const useDummyState = create<DummyState>()((set) => ({
 
   move: (isPressed) => {
     if (isPressed) {
-      const delta = 0.2
+      const delta = 0.5
       return set((dummyState) => ({
         position: {
           ...dummyState.position,
@@ -31,14 +31,14 @@ const useDummyState = create<DummyState>()((set) => ({
   turnLeft: (isPressed) => {
     if (isPressed) {
       return set((dummyState) => ({
-        direction: dummyState.direction + Math.PI / 16
+        direction: dummyState.direction + Math.PI / 8
       }))
     }
   },
   turnRight: (isPressed) => {
     if (isPressed) {
       return set((dummyState) => ({
-        direction: dummyState.direction - Math.PI / 16
+        direction: dummyState.direction - Math.PI / 8
       }))
     }
   },
