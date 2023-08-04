@@ -1,10 +1,16 @@
 import { useEffect, useRef } from 'react'
 import { useAnimations, useGLTF, OrbitControls } from '@react-three/drei'
-import { useSpring, animated } from '@react-spring/three'
-import { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
+import {
+  Group,
+  SkinnedMesh,
+  Bone,
+  MeshStandardMaterial,
+  MathUtils
+} from 'three'
 import { GLTF } from 'three-stdlib'
 
 import { useDummyState } from '../store/dummyState'
+import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -26,43 +32,49 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
   const direction = useDummyState((dummyState) => dummyState.direction)
   const actionIndex = useDummyState((dummyState) => dummyState.actionIndex)
 
-  const ref = useRef<Group>(null!)
+  const refOut = useRef<Group>(null!)
+  const refIn = useRef<Group>(null!)
 
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
-  const { actions, names } = useAnimations(animations, ref)
-
-  const [springs, api] = useSpring(
-    () => ({
-      position: [0, 0, 0],
-      direction: 0,
-      config: { mass: 2, tension: 10, friction: 10 }
-    }),
-    []
-  )
+  const { actions, names } = useAnimations(animations, refOut)
 
   useEffect(() => {
-    api.start({
-      position: [position.x, position.y, position.z],
-      direction: direction
-    })
-  }, [api, position, direction])
-
-  useEffect(() => {
-    actions[names[actionIndex]]?.reset().play()
-    actions[names[actionIndex]]?.reset().fadeIn(0.5).play()
+    if (actionIndex == 1) {
+      actions[names[actionIndex]]?.reset().play()
+    } else {
+      actions[names[actionIndex]]?.fadeIn(1.5).play()
+    }
     return () => {
-      actions[names[actionIndex]]?.fadeOut(0.5)
+      if (actionIndex == 1) {
+        actions[names[actionIndex]]?.fadeOut(1.5)
+      } else {
+        actions[names[actionIndex]]?.stop()
+      }
     }
   }, [actions, names, actionIndex])
 
+  useFrame((state, delta) => {
+    refIn.current.position.x = MathUtils.lerp(
+      refIn.current.position.x,
+      position.x,
+      delta * 2
+    )
+    refIn.current.position.z = MathUtils.lerp(
+      refIn.current.position.z,
+      position.z,
+      delta * 2
+    )
+    refIn.current.rotation.y = MathUtils.lerp(
+      refIn.current.rotation.y,
+      direction,
+      delta * 2
+    )
+  })
+
   return (
-    <group {...props} ref={ref} dispose={null}>
+    <group {...props} ref={refOut} dispose={null}>
       <group name="Scene">
-        <animated.group
-          name="ArmatureD"
-          position={springs.position.to((x, y, z) => [x, y, z])}
-          rotation-y={springs.direction.to((y) => y)}
-        >
+        <group name="ArmatureD" ref={refIn}>
           <skinnedMesh
             castShadow
             name="BodyD"
@@ -99,7 +111,7 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
             skeleton={nodes.ShoesD.skeleton}
           />
           <primitive object={nodes.Root} />
-        </animated.group>
+        </group>
       </group>
 
       <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
