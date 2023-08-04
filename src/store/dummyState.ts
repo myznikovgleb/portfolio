@@ -14,7 +14,7 @@ interface DummyState {
 const useDummyState = create<DummyState>()((set) => ({
   position: { x: 0, y: 0, z: 0 },
   direction: 0,
-  actionIndex: 2,
+  actionIndex: 0,
 
   move: (isPressed) => {
     if (isPressed) {
@@ -24,7 +24,12 @@ const useDummyState = create<DummyState>()((set) => ({
           ...dummyState.position,
           x: dummyState.position.x + delta * Math.sin(dummyState.direction),
           z: dummyState.position.z + delta * Math.cos(dummyState.direction)
-        }
+        },
+        actionIndex: 1
+      }))
+    } else {
+      return set(() => ({
+        actionIndex: 0
       }))
     }
   },
