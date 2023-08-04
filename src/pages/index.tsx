@@ -4,6 +4,7 @@ import { Environment } from '@react-three/drei'
 import Dummy from '../components/Dummy'
 import HomeButton from '../components/HomeButton'
 import { Keyboard, Pointer } from '../controls'
+import Credits from '../components/Credits'
 
 export default function Home() {
   return (
@@ -24,6 +25,8 @@ export default function Home() {
       <Keyboard />
       <Pointer />
       <HomeButton />
+
+      <Credits />
     </main>
   )
 }
