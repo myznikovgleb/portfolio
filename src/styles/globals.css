@@ -4,7 +4,6 @@
 
 html,
 body,
-main,
 #__next {
   margin: 0;
   height: 100%;
@@ -16,4 +15,10 @@ main,
   display: block;
 
   background-color: #ffffff;
+}
+
+@layer components {
+  .icon {
+    @apply p-1 border-4 rounded-full border-white/0 active:border-white focus-visible:outline-none;
+  }
 }

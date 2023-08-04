@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
 import { useAnimations, useGLTF, OrbitControls } from '@react-three/drei'
 import {
   Group,
@@ -10,9 +11,8 @@ import {
 import { GLTF } from 'three-stdlib'
 
 import { useDummyState } from '../store/dummyState'
-import { useFrame } from '@react-three/fiber'
 
-type GLTFResult = GLTF & {
+interface GLTFResult extends GLTF {
   nodes: {
     BodyD: SkinnedMesh
     EyesD: SkinnedMesh
@@ -27,16 +27,17 @@ type GLTFResult = GLTF & {
     Clothes: MeshStandardMaterial
   }
 }
+
 export default function Dummy(props: JSX.IntrinsicElements['group']) {
   const position = useDummyState((dummyState) => dummyState.position)
   const direction = useDummyState((dummyState) => dummyState.direction)
   const actionIndex = useDummyState((dummyState) => dummyState.actionIndex)
 
-  const refOut = useRef<Group>(null!)
-  const refIn = useRef<Group>(null!)
+  const refOuter = useRef<Group>(null!)
+  const refInner = useRef<Group>(null!)
 
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
-  const { actions, names } = useAnimations(animations, refOut)
+  const { actions, names } = useAnimations(animations, refOuter)
 
   useEffect(() => {
     if (actionIndex == 1) {
@@ -53,28 +54,28 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
     }
   }, [actions, names, actionIndex])
 
-  useFrame((state, delta) => {
-    refIn.current.position.x = MathUtils.lerp(
-      refIn.current.position.x,
+  useFrame((_, delta) => {
+    refInner.current.position.x = MathUtils.lerp(
+      refInner.current.position.x,
       position.x,
       delta * 2
     )
-    refIn.current.position.z = MathUtils.lerp(
-      refIn.current.position.z,
+    refInner.current.position.z = MathUtils.lerp(
+      refInner.current.position.z,
       position.z,
       delta * 2
     )
-    refIn.current.rotation.y = MathUtils.lerp(
-      refIn.current.rotation.y,
+    refInner.current.rotation.y = MathUtils.lerp(
+      refInner.current.rotation.y,
       direction,
       delta * 2
     )
   })
 
   return (
-    <group {...props} ref={refOut} dispose={null}>
+    <group {...props} ref={refOuter} dispose={null}>
       <group name="Scene">
-        <group name="ArmatureD" ref={refIn}>
+        <group name="ArmatureD" ref={refInner}>
           <skinnedMesh
             castShadow
             name="BodyD"

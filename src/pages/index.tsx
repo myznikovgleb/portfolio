@@ -7,7 +7,7 @@ import { Keyboard, Pointer } from '../controls'
 
 export default function Home() {
   return (
-    <div id="canvas">
+    <main id="canvas">
       <Canvas shadows camera={{ position: [0, 2.5, -3] }}>
         <ambientLight intensity={0.5} />
         <directionalLight
@@ -15,13 +15,15 @@ export default function Home() {
           castShadow
           shadow-mapSize={1024}
         />
-        <Dummy position={[0, 0, -1.5]} />
-        <Environment preset="city" />
         <fog attach="fog" args={['white', 6, 8]} />
+        <Environment preset="city" />
+
+        <Dummy position={[0, 0, -1.5]} />
       </Canvas>
+
       <Keyboard />
       <Pointer />
       <HomeButton />
-    </div>
+    </main>
   )
 }

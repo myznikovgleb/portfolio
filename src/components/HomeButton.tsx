@@ -15,21 +15,18 @@ export default function HomeButton() {
 
   if (!isDummyHidden) return null
 
-  const btnClassName =
-    'p-1 border-4 rounded-full border-white/0 active:border-white focus-visible:outline-none'
-
   return (
     <div className="absolute top-0 left-0 z-10 w-full h-full flex items-center justify-center">
       <button
-        onPointerDown={(e) => reset(true)}
-        onPointerUp={(e) => reset(false)}
-        className={`animate-bounce ${btnClassName}`}
+        onPointerDown={() => reset(true)}
+        onPointerUp={() => reset(false)}
+        className="icon animate-bounce"
       >
         <Image
           src="arrow_back.svg"
           width={48}
           height={48}
-          alt="Moving"
+          alt="Reseting"
           priority
         />
       </button>
