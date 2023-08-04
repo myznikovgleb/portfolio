@@ -7,17 +7,14 @@ export function Pointer() {
   const turnLeft = useDummyState((dummyState) => dummyState.turnLeft)
   const turnRight = useDummyState((dummyState) => dummyState.turnRight)
 
-  const btnClassName =
-    'p-1 border-4 rounded-full border-white/0 active:border-white focus-visible:outline-none'
-
   return (
-    <div className="absolute bottom-0 left-0 z-10 py-6 px-2">
+    <div className="absolute bottom-0 left-0 z-10 py-4 px-2">
       <div className="grid grid-row-2 grid-col-3">
         <div className="row-start-1 col-start-2">
           <button
-            onPointerDown={(e) => move(true)}
-            onPointerUp={(e) => move(false)}
-            className={btnClassName}
+            onPointerDown={() => move(true)}
+            onPointerUp={() => move(false)}
+            className="icon"
           >
             <Image
               src="arrow_forward.svg"
@@ -31,9 +28,9 @@ export function Pointer() {
 
         <div className="row-start-2 col-start-1">
           <button
-            onPointerDown={(e) => turnLeft(true)}
-            onPointerUp={(e) => turnLeft(false)}
-            className={btnClassName}
+            onPointerDown={() => turnLeft(true)}
+            onPointerUp={() => turnLeft(false)}
+            className="icon"
           >
             <Image
               src="arrow_left.svg"
@@ -47,9 +44,9 @@ export function Pointer() {
 
         <div className="row-start-2 col-start-3">
           <button
-            onPointerDown={(e) => turnRight(true)}
-            onPointerUp={(e) => turnRight(false)}
-            className={btnClassName}
+            onPointerDown={() => turnRight(true)}
+            onPointerUp={() => turnRight(false)}
+            className="icon"
           >
             <Image
               src="arrow_right.svg"
