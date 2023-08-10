@@ -3,13 +3,13 @@ import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
 import HomeButton from '../components/HomeButton'
-import { Keyboard, Pointer } from '../controls'
+import { Keyboard, Pointer, View } from '../controls'
 import Credits from '../components/Credits'
 
 export default function Home() {
   return (
     <main id="canvas">
-      <Canvas shadows camera={{ position: [0, 2.5, -3] }}>
+      <Canvas shadows camera={{ position: [0, 2.5, -3], far: 10 }}>
         <ambientLight intensity={0.5} />
         <directionalLight
           position={[3, 3, -3]}
@@ -20,6 +20,8 @@ export default function Home() {
         <Environment preset="city" />
 
         <Dummy position={[0, 0, -1.5]} />
+
+        <View />
       </Canvas>
 
       <Keyboard />

@@ -4,17 +4,20 @@ interface DummyState {
   position: { x: number; y: number; z: number }
   direction: number
   actionIndex: number
+  isInFrustum: boolean
 
   move: (isPressed: boolean) => void
   turnLeft: (isPressed: boolean) => void
   turnRight: (isPressed: boolean) => void
   reset: (isPressed: boolean) => void
+  setIsInFrustum: (isInFrustumNow: boolean) => void
 }
 
 const useDummyState = create<DummyState>()((set) => ({
   position: { x: 0, y: 0, z: 0 },
   direction: 0,
   actionIndex: 0,
+  isInFrustum: true,
 
   move: (isPressed) => {
     if (isPressed) {
@@ -59,6 +62,12 @@ const useDummyState = create<DummyState>()((set) => ({
         direction: 0
       }))
     }
+  },
+
+  setIsInFrustum: (isInFrustumNow) => {
+    return set(() => ({
+      isInFrustum: isInFrustumNow
+    }))
   }
 }))
 
