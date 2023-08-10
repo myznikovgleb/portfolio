@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useAnimations, useGLTF, OrbitControls } from '@react-three/drei'
+import { useAnimations, useGLTF } from '@react-three/drei'
 import {
   Group,
   SkinnedMesh,
@@ -116,11 +116,9 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
       </group>
 
       <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
-        <circleGeometry args={[6]} />
+        <planeGeometry args={[20, 20]} />
         <meshStandardMaterial color="hotpink" side={2} />
       </mesh>
-
-      <OrbitControls />
     </group>
   )
 }
