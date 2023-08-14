@@ -40,14 +40,14 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
   const { actions, names } = useAnimations(animations, refOuter)
 
   useEffect(() => {
-    if (actionIndex == 1) {
+    if (actionIndex > 0) {
       actions[names[actionIndex]]?.reset().play()
     } else {
-      actions[names[actionIndex]]?.fadeIn(1.5).play()
+      actions[names[actionIndex]]?.fadeIn(1.65).play()
     }
     return () => {
-      if (actionIndex == 1) {
-        actions[names[actionIndex]]?.fadeOut(1.5)
+      if (actionIndex > 0) {
+        actions[names[actionIndex]]?.fadeOut(1.65)
       } else {
         actions[names[actionIndex]]?.stop()
       }
@@ -58,17 +58,17 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
     refInner.current.position.x = MathUtils.lerp(
       refInner.current.position.x,
       position.x,
-      delta * 2
+      delta * 1.65
     )
     refInner.current.position.z = MathUtils.lerp(
       refInner.current.position.z,
       position.z,
-      delta * 2
+      delta * 1.65
     )
     refInner.current.rotation.y = MathUtils.lerp(
       refInner.current.rotation.y,
       direction,
-      delta * 2
+      delta * 1.75
     )
   })
 
