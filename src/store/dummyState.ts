@@ -22,6 +22,13 @@ const useDummyState = create<DummyState>()((set) => ({
   move: (isPressed) => {
     if (isPressed) {
       const delta = 0.5
+      setTimeout(
+        () =>
+          set(() => ({
+            actionIndex: 0
+          })),
+        100
+      )
       return set((dummyState) => ({
         position: {
           ...dummyState.position,

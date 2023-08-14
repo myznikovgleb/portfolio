@@ -23,11 +23,6 @@ export function View() {
     let frustum = new Frustum()
     frustum.setFromProjectionMatrix(projScreenMatrix)
 
-    console.log(
-      'Is in frustum:',
-      frustum.containsPoint(new Vector3(position.x, position.y, position.z))
-    )
-
     setIsInFrustum(
       frustum.containsPoint(new Vector3(position.x, position.y, position.z))
     )
