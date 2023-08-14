@@ -25,6 +25,8 @@ function useKeys(keyConfigs: KeyConfig[]) {
     const downHandler = ({ key }: KeyboardEvent) => {
       if (!keyMaps[key]) return
 
+      if (keyMaps[key].isPressed) return
+
       keyMaps[key].isPressed = true
       const { isPressed, handler } = keyMaps[key]
       handler(isPressed)
