@@ -1,7 +1,6 @@
-import Image from 'next/image'
-
 import { useDummyState } from '../store/dummyState'
 import { usePointerLong } from '../utils'
+import { ArrowForward, ArrowLeft, ArrowRight } from '../icons'
 
 export function Pointer() {
   const move = useDummyState((dummyState) => dummyState.move)
@@ -28,37 +27,19 @@ export function Pointer() {
       <div className="grid grid-row-2 grid-col-3">
         <div className="row-start-1 col-start-2">
           <button {...onPointerLongForward} className="icon">
-            <Image
-              src="arrow_forward.svg"
-              width={48}
-              height={48}
-              alt="Moving"
-              priority
-            />
+            <ArrowForward height={48} width={48} />
           </button>
         </div>
 
         <div className="row-start-2 col-start-1">
           <button {...onPointerLongLeft} className="icon">
-            <Image
-              src="arrow_left.svg"
-              width={48}
-              height={48}
-              alt="Clockwise rotation"
-              priority
-            />
+            <ArrowLeft height={48} width={48} />
           </button>
         </div>
 
         <div className="row-start-2 col-start-3">
           <button {...onPointerLongRight} className="icon">
-            <Image
-              src="arrow_right.svg"
-              width={48}
-              height={48}
-              alt="Counterclockwise rotation"
-              priority
-            />
+            <ArrowRight height={48} width={48} />
           </button>
         </div>
       </div>
