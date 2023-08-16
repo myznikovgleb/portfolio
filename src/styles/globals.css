@@ -19,6 +19,9 @@ body,
 
 @layer components {
   .icon {
-    @apply p-1 border-4 rounded-full border-white/0 active:border-white focus-visible:outline-none;
+    @apply p-2 rounded-full bg-white/20 focus-visible:outline-none;
+  }
+  .active {
+    @apply bg-white/40;
   }
 }
