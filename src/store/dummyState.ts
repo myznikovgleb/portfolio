@@ -22,13 +22,6 @@ const useDummyState = create<DummyState>()((set) => ({
   move: (isPressed) => {
     if (isPressed) {
       const delta = 0.65
-      setTimeout(
-        () =>
-          set(() => ({
-            actionIndex: 0
-          })),
-        100
-      )
       return set((dummyState) => ({
         position: {
           ...dummyState.position,
@@ -45,13 +38,6 @@ const useDummyState = create<DummyState>()((set) => ({
   },
   turnLeft: (isPressed) => {
     if (isPressed) {
-      setTimeout(
-        () =>
-          set(() => ({
-            actionIndex: 0
-          })),
-        100
-      )
       return set((dummyState) => ({
         direction: dummyState.direction + Math.PI / 4,
         actionIndex: 1
@@ -64,13 +50,6 @@ const useDummyState = create<DummyState>()((set) => ({
   },
   turnRight: (isPressed) => {
     if (isPressed) {
-      setTimeout(
-        () =>
-          set(() => ({
-            actionIndex: 0
-          })),
-        100
-      )
       return set((dummyState) => ({
         direction: dummyState.direction - Math.PI / 4,
         actionIndex: 1
@@ -90,7 +69,7 @@ const useDummyState = create<DummyState>()((set) => ({
           x: 0,
           z: 0
         },
-        direction: 0
+        direction: dummyState.direction - (dummyState.direction % (Math.PI * 2))
       }))
     }
   },
