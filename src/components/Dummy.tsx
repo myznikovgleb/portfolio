@@ -116,7 +116,7 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
       </group>
 
       <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
-        <planeGeometry args={[20, 20]} />
+        <planeGeometry args={[25, 25]} />
         <meshStandardMaterial color="hotpink" side={2} />
       </mesh>
     </group>
