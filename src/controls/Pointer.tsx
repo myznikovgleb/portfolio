@@ -1,6 +1,6 @@
 import { useDummyState } from '../store/dummyState'
-import { usePointerLong } from '../utils'
-import { ArrowForward, ArrowLeft, ArrowRight } from '../icons'
+import { useIsMobileDevice, usePointerLong } from '../utils'
+import { IconArrowForward, IconArrowLeft, IconArrowRight } from '../icons'
 
 export function Pointer() {
   const move = useDummyState((dummyState) => dummyState.move)
@@ -22,24 +22,39 @@ export function Pointer() {
     1250
   )
 
+  const isMobileDevice = useIsMobileDevice()
+
   return (
-    <div className="absolute bottom-[12%] left-[2%] z-10 px-2">
+    <div
+      className={`absolute ${
+        isMobileDevice ? 'bottom-[12%]' : 'bottom-[4%]'
+      } left-[2%] z-10 px-2`}
+    >
       <div className="grid grid-row-2 grid-col-3">
         <div className="row-start-1 col-start-2">
           <button {...onPointerLongForward} className="ctrl">
-            <ArrowForward height={48} width={48} />
+            <IconArrowForward
+              height={isMobileDevice ? 48 : 72}
+              width={isMobileDevice ? 48 : 72}
+            />
           </button>
         </div>
 
         <div className="row-start-2 col-start-1">
           <button {...onPointerLongLeft} className="ctrl">
-            <ArrowLeft height={48} width={48} />
+            <IconArrowLeft
+              height={isMobileDevice ? 48 : 72}
+              width={isMobileDevice ? 48 : 72}
+            />
           </button>
         </div>
 
         <div className="row-start-2 col-start-3">
           <button {...onPointerLongRight} className="ctrl">
-            <ArrowRight height={48} width={48} />
+            <IconArrowRight
+              height={isMobileDevice ? 48 : 72}
+              width={isMobileDevice ? 48 : 72}
+            />
           </button>
         </div>
       </div>

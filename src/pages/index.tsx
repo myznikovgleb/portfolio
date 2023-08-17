@@ -2,11 +2,15 @@ import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
+import FootPanel from '../components/FootPanel'
+import HeadPanel from '../components/HeadPanel'
 import ReplayButton from '../components/ReplayButton'
 import { Keyboard, Pointer, View } from '../controls'
-import Credits from '../components/Credits'
+import { useIsMobileDevice } from '../utils'
 
 export default function Home() {
+  const isMobileDevice = useIsMobileDevice()
+
   return (
     <main id="canvas">
       <Canvas shadows camera={{ position: [0, 2.5, -3], far: 10 }}>
@@ -28,7 +32,7 @@ export default function Home() {
       <Pointer />
       <ReplayButton />
 
-      <Credits />
+      {isMobileDevice ? <FootPanel /> : <HeadPanel />}
     </main>
   )
 }
