@@ -1,8 +1,7 @@
-import Image from 'next/image'
-
 import { useDummyState } from '../store/dummyState'
+import { Replay } from '../icons'
 
-export default function HomeButton() {
+export default function ReplayButton() {
   const isInFrustum = useDummyState((dummyState) => dummyState.isInFrustum)
   const reset = useDummyState((dummyState) => dummyState.reset)
 
@@ -13,15 +12,9 @@ export default function HomeButton() {
       <button
         onPointerDown={() => reset(true)}
         onPointerUp={() => reset(false)}
-        className="icon animate-bounce"
+        className="ctrl animate-bounce"
       >
-        <Image
-          src="arrow_back.svg"
-          width={48}
-          height={48}
-          alt="Reseting"
-          priority
-        />
+        <Replay height={48} width={48} />
       </button>
     </div>
   )

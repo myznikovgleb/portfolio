@@ -23,10 +23,10 @@ body,
 }
 
 @layer components {
-  .icon {
-    @apply p-2 rounded-full bg-white/20 focus-visible:outline-none;
+  .ctrl {
+    @apply p-2 rounded-full focus-visible:outline-none bg-primary/20 text-white;
   }
-  .active {
-    @apply bg-white/40;
+  .ctrl.active {
+    @apply bg-primary/40;
   }
 }

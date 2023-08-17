@@ -23,22 +23,22 @@ export function Pointer() {
   )
 
   return (
-    <div className="absolute bottom-0 left-0 z-10 py-4 px-2">
+    <div className="absolute bottom-[12%] left-[2%] z-10 px-2">
       <div className="grid grid-row-2 grid-col-3">
         <div className="row-start-1 col-start-2">
-          <button {...onPointerLongForward} className="icon">
+          <button {...onPointerLongForward} className="ctrl">
             <ArrowForward height={48} width={48} />
           </button>
         </div>
 
         <div className="row-start-2 col-start-1">
-          <button {...onPointerLongLeft} className="icon">
+          <button {...onPointerLongLeft} className="ctrl">
             <ArrowLeft height={48} width={48} />
           </button>
         </div>
 
         <div className="row-start-2 col-start-3">
-          <button {...onPointerLongRight} className="icon">
+          <button {...onPointerLongRight} className="ctrl">
             <ArrowRight height={48} width={48} />
           </button>
         </div>

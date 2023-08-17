@@ -1,6 +1,6 @@
 import { IconProps } from './types'
 
-export function ArrowRight(props: IconProps) {
+export function Home(props: IconProps) {
   const { height, width } = props
   return (
     <svg
@@ -10,7 +10,7 @@ export function ArrowRight(props: IconProps) {
       width={width}
       fill="currentColor"
     >
-      <path d="M645-433H135v-94h510L413-759l67-67 346 346-346 345-67-66 232-232Z" />
+      <path d="M135-95v-517.667L480-872l346 259v518H566v-311H394v311H135Z" />
     </svg>
   )
 }
