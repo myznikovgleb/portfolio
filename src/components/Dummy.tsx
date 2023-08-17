@@ -11,6 +11,7 @@ import {
 import { GLTF } from 'three-stdlib'
 
 import { useDummyState } from '../store/dummyState'
+import { useIsDarkMode } from '../utils'
 
 interface GLTFResult extends GLTF {
   nodes: {
@@ -38,6 +39,8 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
 
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
   const { actions, names } = useAnimations(animations, refOuter)
+
+  const isDarkMode = useIsDarkMode()
 
   useEffect(() => {
     if (actionIndex > 0) {
@@ -117,7 +120,10 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
 
       <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
         <planeGeometry args={[25, 25]} />
-        <meshStandardMaterial color="hotpink" side={2} />
+        <meshStandardMaterial
+          color={isDarkMode ? '#374151' : '#ff69b4'}
+          side={2}
+        />
       </mesh>
     </group>
   )
