@@ -1,5 +1,5 @@
 import { useDummyState } from '../store/dummyState'
-import { Replay } from '../icons'
+import { IconReplay } from '../icons'
 
 export default function ReplayButton() {
   const isInFrustum = useDummyState((dummyState) => dummyState.isInFrustum)
@@ -14,7 +14,7 @@ export default function ReplayButton() {
         onPointerUp={() => reset(false)}
         className="ctrl animate-bounce"
       >
-        <Replay height={48} width={48} />
+        <IconReplay height={48} width={48} />
       </button>
     </div>
   )

@@ -1,6 +1,6 @@
 import { IconProps } from './types'
 
-export function Replay(props: IconProps) {
+export function IconReplay(props: IconProps) {
   const { height, width } = props
   return (
     <svg
