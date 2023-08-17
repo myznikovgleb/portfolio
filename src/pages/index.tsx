@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
-import HomeButton from '../components/HomeButton'
+import ReplayButton from '../components/ReplayButton'
 import { Keyboard, Pointer, View } from '../controls'
 import Credits from '../components/Credits'
 
@@ -26,7 +26,7 @@ export default function Home() {
 
       <Keyboard />
       <Pointer />
-      <HomeButton />
+      <ReplayButton />
 
       <Credits />
     </main>
