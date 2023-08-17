@@ -1,6 +1,6 @@
 import { IconProps } from './types'
 
-export function Github(props: IconProps) {
+export function IconGithub(props: IconProps) {
   const { height, width, className } = props
   return (
     <svg

@@ -1,6 +1,6 @@
 import { IconProps } from './types'
 
-export function Home(props: IconProps) {
+export function IconHome(props: IconProps) {
   const { height, width } = props
   return (
     <svg

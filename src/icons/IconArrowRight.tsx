@@ -1,6 +1,6 @@
 import { IconProps } from './types'
 
-export function ArrowRight(props: IconProps) {
+export function IconArrowRight(props: IconProps) {
   const { height, width } = props
   return (
     <svg
