@@ -1,6 +1,6 @@
 import { IconProps } from './types'
 
-export function IconHome(props: IconProps) {
+export function IconBrush(props: IconProps) {
   const { height, width, className = '' } = props
   return (
     <svg
@@ -11,7 +11,7 @@ export function IconHome(props: IconProps) {
       fill="currentColor"
       className={className}
     >
-      <path d="M135-95v-517.667L480-872l346 259v518H566v-311H394v311H135Z" />
+      <path d="M209-93q-38 0-79-18t-76-63q43-12 58.5-32.5T131-268q3-47 37-80t86-33q52 0 88 36t36 88q0 72-49 118T209-93Zm251-253L347-464l410-411q14-13 31-14t32 14l53 53q15 15 14 32.5T873-758L460-346Z" />
     </svg>
   )
 }
