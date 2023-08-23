@@ -1,7 +1,7 @@
 import { IconProps } from './types'
 
 export function IconGithub(props: IconProps) {
-  const { height, width, className } = props
+  const { height, width, className = '' } = props
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

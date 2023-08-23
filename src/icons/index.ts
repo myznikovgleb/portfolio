@@ -1,6 +1,7 @@
 export * from './IconArrowForward'
 export * from './IconArrowLeft'
 export * from './IconArrowRight'
+export * from './IconBrush'
 export * from './IconGithub'
 export * from './IconHome'
 export * from './IconReplay'
