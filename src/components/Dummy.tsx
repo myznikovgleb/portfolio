@@ -11,7 +11,7 @@ import {
 import { GLTF } from 'three-stdlib'
 
 import { useDummyState } from '../store/dummyState'
-import { useIsDarkMode } from '../utils'
+import { usePreferences } from '../store/preferences'
 
 interface GLTFResult extends GLTF {
   nodes: {
@@ -40,7 +40,7 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
   const { actions, names } = useAnimations(animations, refOuter)
 
-  const isDarkMode = useIsDarkMode()
+  const isDarkMode = usePreferences((preferences) => preferences.isDarkMode)
 
   useEffect(() => {
     if (actionIndex > 0) {
