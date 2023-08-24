@@ -1,9 +1,12 @@
 import { useDummyState } from '../store/dummyState'
+import { useIsMobileDevice } from '../utils'
 import { IconReplay } from '../icons'
 
 export default function ReplayButton() {
   const isInFrustum = useDummyState((dummyState) => dummyState.isInFrustum)
   const reset = useDummyState((dummyState) => dummyState.reset)
+
+  const isMobileDevice = useIsMobileDevice()
 
   if (isInFrustum) return null
 
@@ -14,7 +17,10 @@ export default function ReplayButton() {
         onPointerUp={() => reset(false)}
         className="ctrl animate-bounce"
       >
-        <IconReplay height={48} width={48} />
+        <IconReplay
+          height={isMobileDevice ? 48 : 72}
+          width={isMobileDevice ? 48 : 72}
+        />
       </button>
     </div>
   )
