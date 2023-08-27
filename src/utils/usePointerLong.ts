@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react'
-import { Event } from 'three'
+import type { Event } from 'three'
 
 export function usePointerLong(
   handler: (isFired: boolean) => void,

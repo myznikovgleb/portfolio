@@ -1,14 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useAnimations, useGLTF } from '@react-three/drei'
-import {
-  Group,
-  SkinnedMesh,
-  Bone,
-  MeshStandardMaterial,
-  MathUtils
-} from 'three'
-import { GLTF } from 'three-stdlib'
+import { MathUtils } from 'three'
+
+import type { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
+import type { GLTF } from 'three-stdlib'
 
 import { useDummyState } from '../store/dummyState'
 import { usePreferences } from '../store/preferences'
