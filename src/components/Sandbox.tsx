@@ -2,6 +2,9 @@ import { Canvas } from '@react-three/fiber'
 import { Environment } from '@react-three/drei'
 
 import Dummy from '../components/Dummy'
+import Floor from '../components/Floor'
+import Obstacle from '../components/Obstacle'
+
 import FootPanel from '../components/FootPanel'
 import HeadPanel from '../components/HeadPanel'
 import ReplayButton from '../components/ReplayButton'
@@ -26,7 +29,11 @@ export default function Sandbox() {
         <fog attach="fog" args={[isDarkMode ? '#111827' : '#ffffff', 6, 8]} />
         <Environment preset={isDarkMode ? 'night' : 'city'} />
 
-        <Dummy position={[0, 0, -1.5]} />
+        <Floor color={isDarkMode ? '#374151' : '#ff69b4'} />
+
+        <Dummy />
+
+        <Obstacle color={isDarkMode ? '#44626e' : '#87ceeb'} />
 
         <View />
       </Canvas>
