@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useDummyState } from '../store/dummyState'
+import { useStateDummy } from '../store'
 
 interface KeyConfig {
   key: string
@@ -54,9 +54,9 @@ function useKeys(keyConfigs: KeyConfig[]) {
 }
 
 export function Keyboard() {
-  const move = useDummyState((dummyState) => dummyState.move)
-  const turnLeft = useDummyState((dummyState) => dummyState.turnLeft)
-  const turnRight = useDummyState((dummyState) => dummyState.turnRight)
+  const move = useStateDummy((state) => state.move)
+  const turnLeft = useStateDummy((state) => state.turnLeft)
+  const turnRight = useStateDummy((state) => state.turnRight)
 
   useKeys([
     { key: 'ArrowUp', handler: move, delay: 750 },

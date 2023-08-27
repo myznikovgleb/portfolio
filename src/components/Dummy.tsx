@@ -1,17 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { useAnimations, useGLTF } from '@react-three/drei'
-import {
-  Group,
-  SkinnedMesh,
-  Bone,
-  MeshStandardMaterial,
-  MathUtils
-} from 'three'
-import { GLTF } from 'three-stdlib'
+import { MathUtils } from 'three'
 
-import { useDummyState } from '../store/dummyState'
-import { usePreferences } from '../store/preferences'
+import type { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
+import type { GLTF } from 'three-stdlib'
+
+import { useStateDummy } from '../store'
 
 interface GLTFResult extends GLTF {
   nodes: {
@@ -29,18 +24,23 @@ interface GLTFResult extends GLTF {
   }
 }
 
-export default function Dummy(props: JSX.IntrinsicElements['group']) {
-  const position = useDummyState((dummyState) => dummyState.position)
-  const direction = useDummyState((dummyState) => dummyState.direction)
-  const actionIndex = useDummyState((dummyState) => dummyState.actionIndex)
+export default function Dummy() {
+  const position = useStateDummy((state) => state.position)
+  const direction = useStateDummy((state) => state.direction)
+  const actionIndex = useStateDummy((state) => state.actionIndex)
 
-  const refOuter = useRef<Group>(null!)
-  const refInner = useRef<Group>(null!)
+  const refPosition = useRef<{ x: number; y: number; z: number }>({
+    x: position.x,
+    y: position.y,
+    z: position.z
+  })
+  const refDirection = useRef<number>(direction)
+
+  const refControl = useRef<Group>(null!)
+  const refAsset = useRef<Group>(null!)
 
   const { nodes, materials, animations } = useGLTF('/dummy.gltf') as GLTFResult
-  const { actions, names } = useAnimations(animations, refOuter)
-
-  const isDarkMode = usePreferences((preferences) => preferences.isDarkMode)
+  const { actions, names } = useAnimations(animations, refAsset)
 
   useEffect(() => {
     if (actionIndex > 0) {
@@ -58,73 +58,71 @@ export default function Dummy(props: JSX.IntrinsicElements['group']) {
   }, [actions, names, actionIndex])
 
   useFrame((_, delta) => {
-    refInner.current.position.x = MathUtils.lerp(
-      refInner.current.position.x,
+    refPosition.current.x = MathUtils.lerp(
+      refPosition.current.x,
       position.x,
       delta * 1.65
     )
-    refInner.current.position.z = MathUtils.lerp(
-      refInner.current.position.z,
+    refPosition.current.z = MathUtils.lerp(
+      refPosition.current.z,
       position.z,
       delta * 1.65
     )
-    refInner.current.rotation.y = MathUtils.lerp(
-      refInner.current.rotation.y,
+    refDirection.current = MathUtils.lerp(
+      refDirection.current,
       direction,
       delta * 1.75
     )
+
+    refControl.current.position.x = refPosition.current.x
+    refControl.current.position.z = refPosition.current.z
+    refControl.current.rotation.y = refDirection.current
   })
 
   return (
-    <group {...props} ref={refOuter} dispose={null}>
-      <group name="Scene">
-        <group name="ArmatureD" ref={refInner}>
-          <skinnedMesh
-            castShadow
-            name="BodyD"
-            geometry={nodes.BodyD.geometry}
-            material={materials.Body}
-            skeleton={nodes.BodyD.skeleton}
-          />
-          <skinnedMesh
-            castShadow
-            name="EyesD"
-            geometry={nodes.EyesD.geometry}
-            material={materials.Eyes}
-            skeleton={nodes.EyesD.skeleton}
-          />
-          <skinnedMesh
-            castShadow
-            name="HeadD"
-            geometry={nodes.HeadD.geometry}
-            material={materials.Body}
-            skeleton={nodes.HeadD.skeleton}
-          />
-          <skinnedMesh
-            castShadow
-            name="ShirtD"
-            geometry={nodes.ShirtD.geometry}
-            material={materials.Clothes}
-            skeleton={nodes.ShirtD.skeleton}
-          />
-          <skinnedMesh
-            castShadow
-            name="ShoesD"
-            geometry={nodes.ShoesD.geometry}
-            material={materials.Clothes}
-            skeleton={nodes.ShoesD.skeleton}
-          />
-          <primitive object={nodes.Root} />
+    <group ref={refControl}>
+      <group ref={refAsset} dispose={null}>
+        <group name="Scene">
+          <group name="ArmatureD">
+            <skinnedMesh
+              castShadow
+              name="BodyD"
+              geometry={nodes.BodyD.geometry}
+              material={materials.Body}
+              skeleton={nodes.BodyD.skeleton}
+            />
+            <skinnedMesh
+              castShadow
+              name="EyesD"
+              geometry={nodes.EyesD.geometry}
+              material={materials.Eyes}
+              skeleton={nodes.EyesD.skeleton}
+            />
+            <skinnedMesh
+              castShadow
+              name="HeadD"
+              geometry={nodes.HeadD.geometry}
+              material={materials.Body}
+              skeleton={nodes.HeadD.skeleton}
+            />
+            <skinnedMesh
+              castShadow
+              name="ShirtD"
+              geometry={nodes.ShirtD.geometry}
+              material={materials.Clothes}
+              skeleton={nodes.ShirtD.skeleton}
+            />
+            <skinnedMesh
+              castShadow
+              name="ShoesD"
+              geometry={nodes.ShoesD.geometry}
+              material={materials.Clothes}
+              skeleton={nodes.ShoesD.skeleton}
+            />
+            <primitive object={nodes.Root} />
+          </group>
         </group>
       </group>
-
-      <mesh receiveShadow rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 4]}>
-        <planeGeometry args={[100, 100]} />
-        <meshStandardMaterial
-          color={isDarkMode ? '#374151' : '#ff69b4'}
-          side={2}
-        />
-      </mesh>
     </group>
   )
 }

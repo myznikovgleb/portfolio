@@ -2,13 +2,11 @@ import { useEffect } from 'react'
 import { useThree } from '@react-three/fiber'
 import { Vector3, Matrix4, Frustum } from 'three'
 
-import { useDummyState } from '../store/dummyState'
+import { useStateDummy } from '../store'
 
 export function View() {
-  const position = useDummyState((dummyState) => dummyState.position)
-  const setIsInFrustum = useDummyState(
-    (dummyState) => dummyState.setIsInFrustum
-  )
+  const position = useStateDummy((state) => state.position)
+  const setIsInFrustum = useStateDummy((state) => state.setIsInFrustum)
 
   const camera = useThree((state) => state.camera)
 
