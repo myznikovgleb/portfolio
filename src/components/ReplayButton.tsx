@@ -1,10 +1,11 @@
-import { useDummyState } from '../store/dummyState'
+import { useStateDummy, useStateObstacle } from '../store'
 import { useIsMobileDevice } from '../utils'
 import { IconReplay } from '../icons'
 
 export default function ReplayButton() {
-  const isInFrustum = useDummyState((dummyState) => dummyState.isInFrustum)
-  const reset = useDummyState((dummyState) => dummyState.reset)
+  const isInFrustum = useStateDummy((state) => state.isInFrustum)
+  const reset = useStateDummy((state) => state.reset)
+  const spawn = useStateObstacle((state) => state.spawn)
 
   const isMobileDevice = useIsMobileDevice()
 
@@ -13,7 +14,10 @@ export default function ReplayButton() {
   return (
     <div className="absolute top-0 left-0 z-10 w-full h-full flex items-center justify-center">
       <button
-        onPointerDown={() => reset(true)}
+        onPointerDown={() => {
+          reset(true)
+          spawn()
+        }}
         onPointerUp={() => reset(false)}
         className="ctrl animate-bounce"
       >

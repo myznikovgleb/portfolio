@@ -6,8 +6,7 @@ import { MathUtils } from 'three'
 import type { Group, SkinnedMesh, Bone, MeshStandardMaterial } from 'three'
 import type { GLTF } from 'three-stdlib'
 
-import { useDummyState } from '../store/dummyState'
-import { usePreferences } from '../store/preferences'
+import { useStateDummy } from '../store'
 
 interface GLTFResult extends GLTF {
   nodes: {
@@ -25,10 +24,10 @@ interface GLTFResult extends GLTF {
   }
 }
 
-export default function Dummy(props: JSX.IntrinsicElements['group']) {
-  const position = useDummyState((dummyState) => dummyState.position)
-  const direction = useDummyState((dummyState) => dummyState.direction)
-  const actionIndex = useDummyState((dummyState) => dummyState.actionIndex)
+  const position = useStateDummy((state) => state.position)
+  const direction = useStateDummy((state) => state.direction)
+  const actionIndex = useStateDummy((state) => state.actionIndex)
+
 
   const refOuter = useRef<Group>(null!)
   const refInner = useRef<Group>(null!)

@@ -1,11 +1,11 @@
-import { useDummyState } from '../store/dummyState'
+import { useStateDummy } from '../store'
 import { useIsMobileDevice, usePointerLong } from '../utils'
 import { IconArrowForward, IconArrowLeft, IconArrowRight } from '../icons'
 
 export function Pointer() {
-  const move = useDummyState((dummyState) => dummyState.move)
-  const turnLeft = useDummyState((dummyState) => dummyState.turnLeft)
-  const turnRight = useDummyState((dummyState) => dummyState.turnRight)
+  const move = useStateDummy((state) => state.move)
+  const turnLeft = useStateDummy((state) => state.turnLeft)
+  const turnRight = useStateDummy((state) => state.turnRight)
 
   const onPointerLongForward = usePointerLong(
     (isFired: boolean) => move(isFired),
