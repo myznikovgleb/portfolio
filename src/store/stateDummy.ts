@@ -1,7 +1,9 @@
 import { create } from 'zustand'
 
-interface DummyState {
-  position: { x: number; y: number; z: number }
+import type { Triplet } from './types'
+
+interface StateDummy {
+  position: Triplet
   direction: number
   actionIndex: number
   isInFrustum: boolean
@@ -13,8 +15,8 @@ interface DummyState {
   setIsInFrustum: (isInFrustumNow: boolean) => void
 }
 
-const useDummyState = create<DummyState>()((set) => ({
-  position: { x: 0, y: 0, z: 0 },
+const useStateDummy = create<StateDummy>()((set) => ({
+  position: { x: 0, y: 0, z: -1.5 },
   direction: 0,
   actionIndex: 0,
   isInFrustum: true,
@@ -22,11 +24,11 @@ const useDummyState = create<DummyState>()((set) => ({
   move: (isPressed) => {
     if (isPressed) {
       const delta = 0.65
-      return set((dummyState) => ({
+      return set((state) => ({
         position: {
-          ...dummyState.position,
-          x: dummyState.position.x + delta * Math.sin(dummyState.direction),
-          z: dummyState.position.z + delta * Math.cos(dummyState.direction)
+          ...state.position,
+          x: state.position.x + delta * Math.sin(state.direction),
+          z: state.position.z + delta * Math.cos(state.direction)
         },
         actionIndex: 2
       }))
@@ -38,8 +40,8 @@ const useDummyState = create<DummyState>()((set) => ({
   },
   turnLeft: (isPressed) => {
     if (isPressed) {
-      return set((dummyState) => ({
-        direction: dummyState.direction + Math.PI / 4,
+      return set((state) => ({
+        direction: state.direction + Math.PI / 4,
         actionIndex: 1
       }))
     } else {
@@ -50,8 +52,8 @@ const useDummyState = create<DummyState>()((set) => ({
   },
   turnRight: (isPressed) => {
     if (isPressed) {
-      return set((dummyState) => ({
-        direction: dummyState.direction - Math.PI / 4,
+      return set((state) => ({
+        direction: state.direction - Math.PI / 4,
         actionIndex: 1
       }))
     } else {
@@ -63,13 +65,13 @@ const useDummyState = create<DummyState>()((set) => ({
 
   reset: (isPressed) => {
     if (isPressed) {
-      return set((dummyState) => ({
+      return set((state) => ({
         position: {
-          ...dummyState.position,
+          ...state.position,
           x: 0,
-          z: 0
+          z: -1.5
         },
-        direction: dummyState.direction - (dummyState.direction % (Math.PI * 2))
+        direction: state.direction - (state.direction % (Math.PI * 2))
       }))
     }
   },
@@ -81,4 +83,4 @@ const useDummyState = create<DummyState>()((set) => ({
   }
 }))
 
-export { useDummyState }
+export { useStateDummy }
