@@ -18,7 +18,7 @@ interface StateDummy {
 const useStateDummy = create<StateDummy>()((set) => ({
   position: { x: 0, y: 0, z: -1.5 },
   direction: 0,
-  actionIndex: 0,
+  actionIndex: -1,
   isInFrustum: true,
 
   move: (isPressed) => {
