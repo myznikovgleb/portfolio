@@ -46,8 +46,13 @@ export default function Obstacle(props: ObstacleProps) {
   }, [spawnObstacle])
 
   useEffect(() => {
-    if (d < 0.75 * 1.15) jumpObstacle({ x: n.x, y: n.y, z: n.z })
-  }, [d, n, jumpObstacle])
+    if (d < 0.75 * 1.15) {
+      jumpObstacle({ x: n.x, y: n.y, z: n.z })
+      setTimeout(() => {
+        spawnObstacle()
+      }, 5000)
+    }
+  }, [d, n, jumpObstacle, spawnObstacle])
 
   useFrame((_, delta) => {
     refPosObstacle.current.x = MathUtils.lerp(
