@@ -46,7 +46,11 @@ export default function Dummy() {
     if (actionIndex > 0) {
       actions[names[actionIndex]]?.reset().play()
     } else {
-      actions[names[actionIndex]]?.fadeIn(1.65).play()
+      if (actionIndex < 0) {
+        actions[names[0]]?.play()
+      } else {
+        actions[names[actionIndex]]?.fadeIn(1.65).play()
+      }
     }
     return () => {
       if (actionIndex > 0) {
