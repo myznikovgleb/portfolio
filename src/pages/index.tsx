@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
+import Layout from '../components/Layout'
 
-const Layout = dynamic(() => import('../components/Layout'), { ssr: false })
 const Sandbox = dynamic(() => import('../components/Sandbox'), {
   ssr: false
 })
