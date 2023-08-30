@@ -27,7 +27,7 @@ export function Pointer() {
   return (
     <div
       className={`absolute ${
-        isMobileDevice ? 'bottom-[12%]' : 'bottom-[4%]'
+        isMobileDevice ? 'bottom-[12%] sm:bottom-[20%]' : 'bottom-[4%]'
       } left-[2%] z-10 px-2`}
     >
       <div className="grid grid-row-2 grid-col-3">
