@@ -10,8 +10,8 @@ module.exports = {
         light: {
           primary: '#ffffff',
           'primary-content': '#ffffff',
-          secondary: '#ffcce6',
-          'secondary-focus': '#ffb3da',
+          secondary: '#ffd6ed',
+          'secondary-focus': '#ffbddf',
           'secondary-content': '#ffffff',
           accent: '#1dcdbc',
           neutral: '#2b3440',

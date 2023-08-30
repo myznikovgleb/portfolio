@@ -1,5 +1,8 @@
 import Head from 'next/head'
 
+import FootPanel from '../components/FootPanel'
+import HeadPanel from '../components/HeadPanel'
+import { useIsMobileDevice } from '../utils'
 import { usePreferences } from '../store/preferences'
 
 interface LayoutProps {
@@ -14,6 +17,7 @@ const keywords = 'portfolio, web, app, threejs, r3f, 3d, gltf'
 export default function Layout(props: LayoutProps) {
   const { children } = props
 
+  const isMobileDevice = useIsMobileDevice()
   const isDarkMode = usePreferences((preferences) => preferences.isDarkMode)
 
   return (
@@ -41,7 +45,10 @@ export default function Layout(props: LayoutProps) {
           content={process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION_TOKEN}
         />
       </Head>
-      <main>{children}</main>
+      <main>
+        {children}
+        {isMobileDevice ? <FootPanel /> : <HeadPanel />}
+      </main>
     </>
   )
 }

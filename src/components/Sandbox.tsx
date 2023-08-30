@@ -5,15 +5,11 @@ import Dummy from '../components/Dummy'
 import Floor from '../components/Floor'
 import Obstacle from '../components/Obstacle'
 
-import FootPanel from '../components/FootPanel'
-import HeadPanel from '../components/HeadPanel'
 import ReplayButton from '../components/ReplayButton'
 import { Keyboard, Pointer, View } from '../controls'
-import { useIsMobileDevice } from '../utils'
 import { usePreferences } from '../store/preferences'
 
 export default function Sandbox() {
-  const isMobileDevice = useIsMobileDevice()
   const isDarkMode = usePreferences((preferences) => preferences.isDarkMode)
 
   return (
@@ -40,8 +36,6 @@ export default function Sandbox() {
       <Keyboard />
       <Pointer />
       <ReplayButton />
-
-      {isMobileDevice ? <FootPanel /> : <HeadPanel />}
     </main>
   )
 }
