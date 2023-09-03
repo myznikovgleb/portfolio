@@ -8,8 +8,8 @@ export default function handler(req: any, res: any) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
     <url>
       <loc>https://portfolio-myznikovgleb.vercel.app/</loc>
-      <loc>https://portfolio-myznikovgleb.vercel.app/about</loc>
-      <loc>https://portfolio-myznikovgleb.vercel.app/settings</loc>
+      <loc>https://portfolio-myznikovgleb.vercel.app/about/</loc>
+      <loc>https://portfolio-myznikovgleb.vercel.app/settings/</loc>
     </url>
     </urlset>`
 
