@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { Environment } from '@react-three/drei'
+import dynamic from 'next/dynamic'
 
 import Dummy from '../components/Dummy'
 import Floor from '../components/Floor'
@@ -8,6 +8,9 @@ import Obstacle from '../components/Obstacle'
 import ReplayButton from '../components/ReplayButton'
 import { Keyboard, Pointer, View } from '../controls'
 import { usePreferences } from '../store/preferences'
+
+const EnvironmentCity = dynamic(() => import('./EnvironmentCity'))
+const EnvironmentNight = dynamic(() => import('./EnvironmentNight'))
 
 export default function Sandbox() {
   const isDarkMode = usePreferences((preferences) => preferences.isDarkMode)
@@ -23,7 +26,7 @@ export default function Sandbox() {
           intensity={isDarkMode ? 0.75 : 1}
         />
         <fog attach="fog" args={[isDarkMode ? '#111827' : '#ffffff', 6, 8]} />
-        <Environment preset={isDarkMode ? 'night' : 'city'} />
+        {isDarkMode ? <EnvironmentNight /> : <EnvironmentCity />}
 
         <Floor color={isDarkMode ? '#374151' : '#ff69b4'} />
 
