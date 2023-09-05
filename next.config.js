@@ -7,6 +7,30 @@ const nextConfig = {
         destination: '/api/sitemap'
       }
     ]
+  },
+  async headers() {
+    const headers = []
+    headers.push(
+      {
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'all'
+          }
+        ],
+        source: '/'
+      },
+      {
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'all'
+          }
+        ],
+        source: '/:slug'
+      }
+    )
+    return headers
   }
 }
 
