@@ -28,6 +28,15 @@ const nextConfig = {
           }
         ],
         source: '/:slug'
+      },
+      {
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'all'
+          }
+        ],
+        source: '/api/:slug'
       }
     )
     return headers
