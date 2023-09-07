@@ -4,7 +4,7 @@
 
 # Portfolio app
 
-A tiny singleplayer adventure game made just for fun. A compilation of two month of hard work. Inspired by everyone around me.
+A tiny single player adventure game made just for fun. A compilation of two months of hard work. Inspired by everyone around me.
 
 ## Details
 
