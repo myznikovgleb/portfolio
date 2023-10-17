@@ -37,7 +37,7 @@ export default function Settings() {
           <h2 className="font-bold text-5xl">Settings</h2>
           <div className="flex flex-col items-center gap-4">
             <p>
-              Pick one of <span className="font-bold">theme modes</span>
+              Pick one of the <span className="font-bold">theme modes</span>
             </p>
             <div className="join">
               <button

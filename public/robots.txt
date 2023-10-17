@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://portfolio-myznikovgleb.vercel.app/sitemap.xml
