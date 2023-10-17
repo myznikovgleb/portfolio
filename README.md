@@ -1,14 +1,13 @@
-<p align="center">
-  <img height="128px" src="public/dummy.png" />
-</p>
-
 # Portfolio app
 
-A tiny single player adventure game made just for fun. A compilation of two months of hard work. Inspired by everyone around me.
+Portfolio app is a showcase of my best projects built with magic.
 
 ## Details
 
-* Written with open-source libs made for 3d development.
-* Run with self-made 3d assets.
-* Optimized for mobiles and also works fine on desktop.
-* Has light and dark themes.
+:page_facing_up: TS and Next.js.
+
+:wrench: Built with Zustand, Tailwind CSS, three.js and other great libs.
+
+:crystal_ball: DIY 3D assets.
+
+:phone: Designed to be adaptive on any user devices or browsers.
