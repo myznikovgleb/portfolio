@@ -13,7 +13,7 @@ export default function About() {
         }`}
       >
         <div className="flex flex-col items-center gap-12 md:gap-24 pt-24 text-xl">
-          <h2 className="font-bold text-5xl">✌️</h2>
+          <h2 className="font-bold text-5xl">🪄</h2>
           <div className="flex flex-col items-center gap-4">
             <p>
               I am <span className="font-bold">Gleb Myznikov</span>
@@ -22,7 +22,7 @@ export default function About() {
               I am frontend web <span className="font-bold">developer</span>
             </p>
             <p>
-              <span className="font-bold">Walking man</span> is one of my pet
+              <span className="font-bold">This app</span> is one of my pet
               projects
             </p>
           </div>
